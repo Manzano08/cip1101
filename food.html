@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Food Gallery</title>
+</head>
+<header class="nav">
+    
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+          <div class="nav-title">
+            The Food Gallery
+          </div>
+        </div>
+        <div class="nav-btn">
+          <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+        
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="food.html">Foods</a>
+          <a href="Plants.html">Plants</a>
+          <a href="cars.html">Cars</a>
+        </div>
+    
+</header>
+<body>
+  <div class="main-container">
+    <div class="slideshow-container">
+
+
+        <div class="mySlides fade">
+          <div class="numbertext"></div>
+          <center>
+          <img src="https://hips.hearstapps.com/hmg-prod/images/blooming-quesadilla-ring-1674080631.jpeg?crop=0.6666666666666667xw:1xh;center,top&resize=980:*" style="width:300; height: 600px;">
+          </center>
+          <div class="text">Previews</div>
+        </div>
+        
+        <div class="mySlides fade">
+          <div class="numbertext"></div>
+          <center>
+          <img src="https://hips.hearstapps.com/hmg-prod/images/loaded-fries-1-1674252336.jpg?crop=0.448xw:1.00xh;0.454xw,0&resize=980:*" style="width:300; height: 600px;">
+          </center>
+          <div class="text">Previews</div>
+        </div>
+        
+        <div class="mySlides fade">
+          <div class="numbertext"></div>
+          <center>
+          <img src="https://hips.hearstapps.com/hmg-prod/images/spinach-artichoke-buns-vertical-1674678299.jpg?crop=0.8333333333333334xw:1xh;center,top&resize=980:*" style="width:300; height: 600px;">
+          </center>
+          <div class="text">Previews</div>
+        </div>
+        
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+        
+        </div>
+        <br>
+        
+        <div style="text-align:center">
+          <span class="dot" onclick="currentSlide(1)"></span> 
+          <span class="dot" onclick="currentSlide(2)"></span> 
+          <span class="dot" onclick="currentSlide(3)"></span> 
+        </div>
+
+
+    <div class="container">
+      <div id="modal" class="modal">
+        <div class="modal-container">
+          <img id="current" src="" alt="">
+        </div>
+      </div>
+      <div class="imgs">
+        
+        <div class="img-container">
+        <center>
+          <img src="https://hips.hearstapps.com/hmg-prod/images/blooming-quesadilla-ring-1674080631.jpeg?crop=0.6666666666666667xw:1xh;center,top&resize=980:*" alt="">
+        </center>
+          <div class="photo-overlay">
+            <h1>Tap To View</h1>
+          </div>
+        </div>
+        <div class="img-container">
+          <center>
+          <img src="https://hips.hearstapps.com/hmg-prod/images/loaded-fries-1-1674252336.jpg?crop=0.448xw:1.00xh;0.454xw,0&resize=980:*" alt="">
+        </center>
+          <div class="photo-overlay">
+            <h1>Tap To View</h1>
+          </div>
+        </div>
+        <div class="img-container">
+          <center>
+          <img src="https://hips.hearstapps.com/hmg-prod/images/spinach-artichoke-buns-vertical-1674678299.jpg?crop=0.8333333333333334xw:1xh;center,top&resize=980:*" alt="">
+        </center>
+          <div class="photo-overlay">
+            <h1>Tap To View</h1>
+          </div>
+        </div>
+        <div class="img-container">
+          <center>
+          <img src="https://hips.hearstapps.com/hmg-prod/images/delish-220129-apricot-chicken-wings-003-ab-web-1647621955.jpg?crop=0.44456140350877194xw:1xh;center,top&resize=980:*" alt="">
+        </center>
+          <div class="photo-overlay">
+            <h1>Tap To View</h1>
+          </div>
+        </div>
+        <div class="img-container">
+          <center>
+          <img src="https://hips.hearstapps.com/hmg-prod/images/buffalo-chicken-meatballs1-1671199673.jpg?crop=0.448xw:1.00xh;0.257xw,0&resize=980:*" alt="">
+        </center>
+          <div class="photo-overlay">
+            <h1>Tap To View</h1>
+          </div>
+        </div>
+        <div class="img-container">
+          <center>
+          <img src="https://hips.hearstapps.com/hmg-prod/images/philly-cheesesteak-sliders-vertical-1674678655.jpg?crop=0.8333333333333333xw:1xh;center,top&resize=980:*" alt="">
+        </center>
+          <div class="photo-overlay">
+            <h1>Tap To View</h1>
+          </div>
+          </div>
+        </div>
+  
+  
+  
+      </div>
+    </div>
+  </div>
+    <script src="app.js"></script>
+  </body>
+
+
+  <script>
+    const current = document.querySelector('#current');
+let enlargeMessages = document.querySelectorAll('.photo-overlay h1');
+const modal = document.getElementById('modal');
+const overlay = document.querySelectorAll('.photo-overlay');
+const modalContainer = document.querySelector('.modal-container');
+
+
+for (let i =0; i < enlargeMessages.length; i++){
+  enlargeMessages[i].addEventListener('click', imgClick);
+}
+
+window.addEventListener('click', clickOutside);
+
+function imgClick(e){
+  modal.style.display = 'block';
+  current.src = e.target.parentNode.previousElementSibling.src;
+}
+
+function clickOutside(e){
+  if(e.target == modal || e.target == modalContainer){
+  modal.style.display = 'none';}
+}
+
+
+$('.slider').each(function() {
+  var $this = $(this);
+  var $group = $this.find('.slide_group');
+  var $slides = $this.find('.slide');
+  var bulletArray = [];
+  var currentIndex = 0;
+  var timeout;
+  
+  function move(newIndex) {
+    var animateLeft, slideLeft;
+    
+    advance();
+    
+    if ($group.is(':animated') || currentIndex === newIndex) {
+      return;
+    }
+    
+    bulletArray[currentIndex].removeClass('active');
+    bulletArray[newIndex].addClass('active');
+    
+    if (newIndex > currentIndex) {
+      slideLeft = '100%';
+      animateLeft = '-100%';
+    } else {
+      slideLeft = '-100%';
+      animateLeft = '100%';
+    }
+    
+    $slides.eq(newIndex).css({
+      display: 'block',
+      left: slideLeft
+    });
+    $group.animate({
+      left: animateLeft
+    }, function() {
+      $slides.eq(currentIndex).css({
+        display: 'none'
+      });
+      $slides.eq(newIndex).css({
+        left: 0
+      });
+      $group.css({
+        left: 0
+      });
+      currentIndex = newIndex;
+    });
+  }
+  
+  function advance() {
+    clearTimeout(timeout);
+    timeout = setTimeout(function() {
+      if (currentIndex < ($slides.length - 1)) {
+        move(currentIndex + 1);
+      } else {
+        move(0);
+      }
+    }, 4000);
+  }
+  
+  $('.next_btn').on('click', function() {
+    if (currentIndex < ($slides.length - 1)) {
+      move(currentIndex + 1);
+    } else {
+      move(0);
+    }
+  });
+  
+  $('.previous_btn').on('click', function() {
+    if (currentIndex !== 0) {
+      move(currentIndex - 1);
+    } else {
+      move(3);
+    }
+  });
+  
+  $.each($slides, function(index) {
+    var $button = $('<a class="slide_btn">&bull;</a>');
+    
+    if (index === currentIndex) {
+      $button.addClass('active');
+    }
+    $button.on('click', function() {
+      move(index);
+    }).appendTo('.slide_buttons');
+    bulletArray.push($button);
+  });
+  
+  advance();
+});
+
+
+        </script>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+        
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+        
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+        
+        function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+        }
+        </script>
+</html>
